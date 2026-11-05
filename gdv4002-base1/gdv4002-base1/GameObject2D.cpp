@@ -57,4 +57,51 @@ void GameObject2D::render() {
 	glPopMatrix();
 }
 
-void GameObject2D::update(double tDelta) {}
+int counter = 0;
+bool increase = true;
+
+void GameObject2D::update(double tDelta) 
+{
+	float sz = 1.0f * tDelta;
+	orientation += 0.01f;
+
+
+	if (increase)
+	{
+		size += glm::vec2(sz, sz);
+		counter++;
+		
+		if (counter >= 100)
+		{
+			increase = false;
+		}
+	}
+	else
+	{
+		size -= glm::vec2(sz, sz);
+		counter--;
+		if (counter <= 0)
+		{
+			increase = true;
+		}
+	}
+
+
+	if (position.x <= -1 && position.y >= -1)
+	{
+		position -= glm::vec2(0, sz);
+	}
+	else if (position.x <= -1 && position.y <= -1)
+	{
+		position += glm::vec2(sz, 0);
+	}
+	else if (position.x >= 1 && position.y <= -1)
+	{
+		position += glm::vec2(0, sz);
+	}
+	else if (position.x >= 1 && position.y >= 1)
+	{
+		position -= glm::vec2(sz, 0);
+	}
+
+}

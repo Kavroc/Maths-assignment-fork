@@ -23,7 +23,10 @@ int main(void) {
 	// Setup game scene objects here
 	//
 
-	
+	GameObject2D* player = addObject("player", glm::vec2(0, 0));
+
+	player->textureID = fiLoadTexture("Resources\\Textures\\mcblock01.png");
+
 	//
 	// Set callback functions
 	//
