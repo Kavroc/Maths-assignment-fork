@@ -56,12 +56,13 @@ void GameObject2D::render() {
 
 	glPopMatrix();
 }
-
+/*
 int counter = 0;
 bool increase = true;
-
+*/
 void GameObject2D::update(double tDelta) 
 {
+	/*
 	float sz = 1.0f * tDelta;
 	orientation += 0.01f;
 
@@ -86,12 +87,11 @@ void GameObject2D::update(double tDelta)
 		}
 	}
 
-
-	if (position.x <= -1 && position.y >= -1)
+	if (position.x >= -1 && position.y >= -1)
 	{
 		position -= glm::vec2(0, sz);
 	}
-	else if (position.x <= -1 && position.y <= -1)
+	else if (position.x <= 1 && position.y <= -1)
 	{
 		position += glm::vec2(sz, 0);
 	}
@@ -103,5 +103,6 @@ void GameObject2D::update(double tDelta)
 	{
 		position -= glm::vec2(sz, 0);
 	}
+	*/
 
 }
