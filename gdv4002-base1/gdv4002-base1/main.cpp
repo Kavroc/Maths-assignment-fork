@@ -3,6 +3,7 @@
 
 // Function prototypes
 
+void myUpdate(GLFWwindow* window, double tDelta);
 
 // Global Variables
 
@@ -23,13 +24,42 @@ int main(void) {
 	// Setup game scene objects here
 	//
 
-	GameObject2D* player = addObject("player", glm::vec2(0, 0));
+	//addObject("player", glm::vec2(1.0f, 1.0f), glm::radians(45.0f), glm::vec2(0.5f, 1.0f), "Resources\\Textures\\mcblock01.png", TextureProperties::NearestFilterTexture());
 
-	player->textureID = fiLoadTexture("Resources\\Textures\\mcblock01.png");
+	addObject("player1");
+	addObject("player2");
+
+	GameObject2D* player1Object = getObject("player1");
+
+	if (player1Object != nullptr)
+	{
+		// Update player1 here
+		player1Object->position = glm::vec2(-1.0f, 1.0f);
+		player1Object->orientation = glm::radians(30.0f);
+		player1Object->size = glm::vec2(0.5f, 1.0f);
+		player1Object->textureID = loadTexture("Resources\\Textures\\bumblebee.png");
+	}
+
+	GameObject2D* player2Object = getObject("player2");
+
+	if (player2Object != nullptr)
+	{
+		// Update player2 here
+		player2Object->position = glm::vec2(1.0f, 1.0f);
+		player2Object->orientation = glm::radians(45.0f);
+		player2Object->size = glm::vec2(0.75f, 1.5f);
+		player2Object->textureID = loadTexture("Resources\\Textures\\mcblock01.png");
+	}
+
+
+	/*GameObject2D* player = addObject("player", glm::vec2(0, 0));
+
+	player->textureID = fiLoadTexture("Resources\\Textures\\mcblock01.png");*/
 
 	//
 	// Set callback functions
 	//
+	setUpdateFunction(myUpdate);
 	
 
 	// Enter main loop - this handles update and render calls
@@ -40,4 +70,16 @@ int main(void) {
 
 	// return success :)
 	return 0;
+}
+
+float anglesPerSecond = glm::radians(45.0f);
+float playerVelocity = 2.0f;
+
+void myUpdate(GLFWwindow* window, double tDelta)
+{
+	float player1RotationSpeed = glm::radians(90.0f);
+
+	GameObject2D* player1 = getObject("player1");
+
+	player1->orientation += glm::radians(1.0f);
 }
